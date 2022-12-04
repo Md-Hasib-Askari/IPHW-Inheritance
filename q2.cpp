@@ -1,4 +1,6 @@
 #include <iostream>
+#include <iomanip>
+
 using namespace std;
 
 class Account{
@@ -18,6 +20,7 @@ public:
         this->Salary_Account_Number = acNo;
     }
     void PrintSalaryinfo() {
+        cout << fixed << setprecision(2);
         cout << "Name: " << Name << endl;
         cout << "Occupation: " << Occupation << endl;
         cout << "Phone Number: " << PhoneNumber << endl;
@@ -27,7 +30,32 @@ public:
 
 };
 class Utility : public Account {
-
+    double ElectricityBill;
+    double GasBill;
+    double Transportation;
+    double food;
+    double HouseRent;
+public:
+    Utility() {}
+    void setUtility(double electricity, double gas, double transport, double fd, double rent) {
+        this->ElectricityBill = electricity;
+        this->GasBill = gas;
+        this->Transportation = transport;
+        this->food = fd;
+        this->HouseRent = rent;
+    }
+    void PrintUtility() {
+        cout << fixed << setprecision(2);
+        cout << "Electricity Bill: " << ElectricityBill << endl;
+        cout << "Gas Bill: " << GasBill << endl;
+        cout << "Transportation: " << Transportation << endl;
+        cout << "Food: " << food << endl;
+        cout << "House Rent: " << HouseRent << endl;
+    }
+    void payment() {
+        SalaryBalance = SalaryBalance - (ElectricityBill + GasBill + Transportation + food + HouseRent);
+        cout << "Salary Balance: " << SalaryBalance << endl;
+    }
 
 };
 class ExtraExpense : public Account {
@@ -46,13 +74,31 @@ public:
         this->Vacation = vac;
         this->Charity = charity;
     }
-    Void ExtraPayment() {
+    void PrintExtraExpense() {
+        cout << fixed << setprecision(2);
+        cout << "Shopping: " << Shopping << endl;
+        cout << "Vacation: " << Vacation << endl;
+        cout << "Charity: " << Charity << endl;
+    }
+    void ExtraPayment() {
         double deduction = Shopping+Vacation+Charity;
+        SalaryBalance = SalaryBalance - deduction;
     }
 
 };
 
 
 int main() {
-
+    Utility obj1;
+    ExtraExpense obj2;
+    obj1.Get_Parent_Salary_Account_info("Md. Shohag", "Student", "01700000000", "101.23a.4b");
+    obj1.PrintSalaryinfo();
+    obj1.setUtility(1000, 500, 1000, 2000, 5000);
+    obj1.PrintUtility();
+    obj1.payment();
+    obj2.setExtraExpence(1000, 5000, 1000);
+    obj2.PrintExtraExpense();
+    obj2.ExtraPayment();
+    obj1.PrintSalaryinfo();
+    return 0;
 }
