@@ -1,6 +1,5 @@
 #include <iostream>
 using namespace std;
-
 class Patient {
 protected:
     string Patient_Name;
